@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/defrex/django-encrypted-fields.png)](https://travis-ci.org/defrex/django-encrypted-fields)
+[![Build Status](https://travis-ci.org/ardydedase/django-encrypted-fields.png)](https://travis-ci.org/ardydedase/django-encrypted-fields)
 [![Pypi Package](https://badge.fury.io/py/django-encrypted-fields.png)](http://badge.fury.io/py/django-encrypted-fields)
 
 ### Django Encrypted Fields
