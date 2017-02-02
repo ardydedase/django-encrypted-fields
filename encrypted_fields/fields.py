@@ -166,7 +166,7 @@ class EncryptedFieldMixin(object):
         try:
             if value is None or not isinstance(value, basestring):
                 return value
-        except AttributeError:
+        except NameError:
             if value is None or not isinstance(value, str):
                 return value
 
