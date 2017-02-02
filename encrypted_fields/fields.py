@@ -163,8 +163,12 @@ class EncryptedFieldMixin(object):
         return self.to_python(value)
 
     def to_python(self, value):
-        if value is None or not isinstance(value, types.StringTypes):
-            return value
+        try:
+            if value is None or not isinstance(value, basestring):
+                return value
+        except AttributeError:
+            if value is None or not isinstance(value, str):
+                return value
 
         if self.prefix and value.startswith(self.prefix):
             value = value[len(self.prefix):]
