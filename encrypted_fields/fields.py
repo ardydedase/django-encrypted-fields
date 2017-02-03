@@ -23,6 +23,7 @@ class EncryptedFieldException(Exception):
 # Simple wrapper around keyczar to standardize the initialization
 # of the crypter object and allow for others to extend as needed.
 class KeyczarWrapper(object):
+
     def __init__(self, keyname, *args, **kwargs):
         self.crypter = keyczar.Crypter.Read(keyname)
 
@@ -181,7 +182,7 @@ class EncryptedFieldMixin(object):
         except UnicodeEncodeError:
             pass
         except binascii.Error:
-            pass        
+            pass
 
         return super(EncryptedFieldMixin, self).to_python(value)
 
@@ -191,7 +192,12 @@ class EncryptedFieldMixin(object):
         if value is None or value == '' or self.decrypt_only:
             return value
 
-        if isinstance(value, types.StringTypes):
+        try:
+            string_is_instance = isinstance(value, basestring)
+        except NameError:
+            string_is_instance = isinstance(value, str)
+
+        if string_is_instance:
             value = value.encode('unicode_escape')
             value = value.encode('ascii')
         else:
@@ -232,6 +238,7 @@ class EncryptedDateTimeField(EncryptedFieldMixin, models.DateTimeField):
 
 
 class EncryptedIntegerField(EncryptedFieldMixin, models.IntegerField):
+
     @cached_property
     def validators(self):
         """
