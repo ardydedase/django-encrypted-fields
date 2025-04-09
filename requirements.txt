@@ -1,2 +1,2 @@
-Django==2.2.21
+Django==5.0.14
 python3-keyczar
